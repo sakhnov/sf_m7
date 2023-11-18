@@ -1,5 +1,5 @@
-let minValue = parseInt(prompt('Минимальное знание числа для игры','0'));
-let maxValue = parseInt(prompt('Максимальное знание числа для игры','100'));
+let minValue = parseInt(prompt('Минимальное значение числа для игры','0'));
+let maxValue = parseInt(prompt('Максимальное значение числа для игры','100'));
 if (isNaN(minValue) || isNaN(maxValue)) {
     minValue = 0;
     maxValue = 100;
@@ -19,11 +19,11 @@ orderNumberField.innerText = orderNumber;
 answerField.innerText = `Вы загадали число ${textNumber(answerNumber) }?`;
 
 document.querySelector('#btnRetry').addEventListener('click', function () {
-    minValue = parseInt(prompt('Минимальное знание числа для игры','0'));
-    maxValue = parseInt(prompt('Максимальное знание числа для игры','100'));
+    minValue = parseInt(prompt('Минимальное значение числа для игры','0'));
+    maxValue = parseInt(prompt('Максимальное значение числа для игры','100'));
     if (isNaN(minValue) && isNaN(maxValue)) {
-        minValue = 10;
-        maxValue = 90;
+        minValue = 0;
+        maxValue = 100;
     } 
     minValue = minValue < -999 ? -999 : minValue;
     maxValue = maxValue > 999 ? 999 : maxValue;   
@@ -105,7 +105,139 @@ document.querySelector('#btnEqual').addEventListener('click', function () {
     }
 })
 
+
+function textNumber100(nn100) {
+    let numberString = '';
+    switch (nn100) {
+        case 1:
+            numberString = 'сто ';
+        break;
+        case 2:
+            numberString = 'двести ';
+        break;
+        case 3:
+            numberString = 'тристо ';
+        break;
+        case 4:
+            numberString = 'четыресто ';
+        break;
+        case 5:
+            numberString = 'пятьсот ';
+        break;
+        case 6:
+            numberString = 'шестьсот ';
+        break;
+        case 7:
+            numberString = 'семьсот ';
+        break;
+        case 8:
+            numberString = 'восемьсот ';
+        break;
+        case 9:
+            numberString = 'девятьсот ';
+        break;                
+    }
+    return numberString; 
+}
+
+function textNumber10(nn10) {
+    let numberString = '';
+    switch (nn10) {
+        case 2:
+            numberString = 'двадцать ';
+        break;
+        case 3:
+            numberString = 'тридцать ';
+        break;
+        case 4:
+            numberString = 'сорок ';
+        break;
+        case 5:
+            numberString = 'пятьдесят ';
+        break;
+        case 6:
+            numberString = 'шестьдесят ';
+        break;
+        case 7:
+            numberString = 'семьдесят ';
+        break;
+        case 8:
+            numberString = 'восемьдесят ';
+        break;
+        case 9:
+            numberString = 'девяносто ';
+       break;     
+    }
+    return numberString;  
+}    
+
+function textNumber1(nn1) {
+    let numberString = '';
+    switch(nn1) {
+        case 1:
+            numberString = 'один';
+        break;
+        case 2:
+            numberString = 'два';
+        break;
+        case 3:
+            numberString = 'три';
+        break;
+        case 4:
+            numberString = 'четыре';
+        break;
+        case 5:
+            numberString = 'пять';
+        break;
+        case 6:
+            numberString = 'шесть';
+        break;
+        case 7:
+            numberString = 'семь';
+        break;
+        case 8:
+            numberString = 'восемь';
+        break;
+        case 9:
+            numberString = 'девять';
+        break;
+        case 10:
+            numberString = 'десять';
+        break;
+        case 11:
+            numberString = 'одиннадцать';
+        break;
+        case 12:
+            numberString = 'двенадцать';
+        break;
+        case 13:
+            numberString = 'тринадцать';
+        break;
+        case 14:
+            numberString = 'четырнадцать';
+        break;
+        case 15:
+            numberString = 'пятнадцать';
+        break;
+        case 16:
+            numberString = 'шестнадцать';
+        break;
+        case 17:
+            numberString = 'семнадцать';
+        break;
+        case 18:
+            numberString = 'восемнадцать';
+        break;
+        case 19:
+            numberString = 'девятьнадцать';
+        break;
+    } 
+    return numberString;  
+}
+
+
 function textNumber(answerNumber) {
+    let resultNumber = answerNumber;
     let numberString = '';
     let minusString = false;
     if (answerNumber < 0) {
@@ -115,71 +247,28 @@ function textNumber(answerNumber) {
         numberString = 0;
         return numberString;
     } 
+    answerNumber = Math.abs(answerNumber);
 
-    switch(numer020) {
-        case '1':
-        numberString = 'один';
-        break;
-        case '2':
-        numberString = 'два';
-        break;
-        case '3':
-        numberString = 'три';
-        break;
-        case '4':
-        numberString = 'четыре';
-        break;
-        case '5':
-        numberString = 'пять';
-        break;
-        case '6':
-        numberString = 'шесть';
-        break;
-        case '7':
-        numberString = 'семь';
-        break;
-        case '8':
-        numberString = 'восемь';
-        break;
-        case '9':
-        numberString = 'девять';
-        break;
-        case '10':
-        numberString = 'десять';
-        break;
-        case '11':
-        numberString = 'одиннадцать';
-        break;
-        case '12':
-        numberString = 'двенадцать';
-        break;
-        case '13':
-        numberString = 'тринадцать';
-        break;
-        case '14':
-        numberString = 'четырнадцать';
-        break;
-        case '15':
-        numberString = 'пятнадцать';
-        break;
-        case '16':
-        numberString = 'шестнадцать';
-        break;
-        case '17':
-        numberString = 'семнадцать';
-        break;
-        case '18':
-        numberString = 'восемнадцать';
-        break;
-        case '19':
-        numberString = 'девятьнадцать';
-        break;
-        case '20':
-        numberString = 'двадцать';
-        break;
+    let nn100 = nn10 = nn1 = nn = 0;
+    nn100 = Math.floor(answerNumber / 100);
+    numberString = textNumber100(nn100);
+    nn10 = answerNumber % 100;
+    if (nn10 > 19 ) {
+        nn1 = Math.floor(nn10 / 10);
+        nn = nn10 % 10;
+        numberString = numberString + textNumber10(nn1) + textNumber1(nn);
+    } else {
+        numberString = numberString + textNumber1(nn10);
+    }
+    if (minusString) {
+        resultString = 'минус ' + numberString;    
+    } else {
+        resultString = numberString;
     }
     
-    
-    
-    return numberString;
+    if (resultString.length > 20) {
+        return resultNumber;
+    } else {
+        return resultString;
+    }
 }
