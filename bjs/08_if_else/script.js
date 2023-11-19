@@ -62,6 +62,9 @@ document.querySelector('#btnOver').addEventListener('click', function () {
     }
 })
 
+
+
+
 document.querySelector('#btnLess').addEventListener('click', function () {
     if (gameRun){
         if (minValue === maxValue){
