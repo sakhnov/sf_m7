@@ -1,43 +1,89 @@
-let minValue = parseInt(prompt('Минимальное значение числа для игры','0'));
-let maxValue = parseInt(prompt('Максимальное значение числа для игры','100'));
-if (isNaN(minValue) || isNaN(maxValue)) {
-    minValue = 0;
-    maxValue = 100;
-}
-minValue = minValue < -999 ? -999 : minValue;
-maxValue = maxValue > 999 ? 999 : maxValue;
+let minVal = document.querySelector('#minVal');
+let maxVal = document.querySelector('#maxVal');
+let minValueOb = document.querySelector('#minValue');
+let maxValueOb = document.querySelector('#maxValue');
+let minValue = 0;
+let maxValue = 100;
 
-alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
-let answerNumber  = Math.floor((minValue + maxValue) / 2);
+let answerNumber  = 50;
 let orderNumber = 1;
 let gameRun = true;
 
 const orderNumberField = document.querySelector('#orderNumberField');
 const answerField = document.querySelector('#answerField');
 
-orderNumberField.innerText = orderNumber;
-answerField.innerText = `Вы загадали число ${textNumber(answerNumber) }?`;
 
-document.querySelector('#btnRetry').addEventListener('click', function () {
-    minValue = parseInt(prompt('Минимальное значение числа для игры','0'));
-    maxValue = parseInt(prompt('Максимальное значение числа для игры','100'));
-    if (isNaN(minValue) && isNaN(maxValue)) {
+let inputBlock = document.querySelector('#inputBlock');
+let nextBlock = document.querySelector('#nextBlock');
+let answerBlock = document.querySelector('#answerBlock');
+
+document.querySelector('#btnNextStep').addEventListener('click', function () {    
+    inputBlock.classList.remove("show");
+    nextBlock.classList.add("show");
+
+    minValue = parseInt(document.querySelector('#minValue').value);
+    maxValue = parseInt(document.querySelector('#maxValue').value);
+
+    if (isNaN(minValue) || isNaN(maxValue)) {
         minValue = 0;
         maxValue = 100;
-    } 
-    minValue = minValue < -999 ? -999 : minValue;
-    maxValue = maxValue > 999 ? 999 : maxValue;   
-    alert(`Загадайте любое целое число от ${minValue} до ${maxValue}, а я его угадаю`);
+    }
+
+    minValue = (( minValue < -999) || (minValue > 999)) ? -999 : minValue; 
+    maxValue = ((maxValue > 999) || (maxValue < -999)) ? 999 : maxValue;
+  
+    if (maxValue < minValue) {
+        let srValue = maxValue;
+        maxValue = minValue;
+        minValue = srValue;
+    }
+
+    minVal.innerText = minValue;
+    maxVal.innerText = maxValue;
+    
+})
+
+document.querySelector('#btnStart').addEventListener('click', function () {
+    nextBlock.classList.remove("show");
+    answerBlock.classList.add("show"); 
+
+    minValue = parseInt(document.querySelector('#minValue').value);
+    maxValue = parseInt(document.querySelector('#maxValue').value);
+
+    if (isNaN(minValue) || isNaN(maxValue)) {
+        minValue = 0;
+        maxValue = 100;
+    }
+
+    minValue = (( minValue < -999) || (minValue > 999)) ? -999 : minValue;     
+    maxValue = ((maxValue > 999) || (maxValue < -999)) ? 999 : maxValue;    
+  
+    if (maxValue < minValue) {
+        let srValue = maxValue;
+        maxValue = minValue;
+        minValue = srValue;
+    }
+    
     answerNumber  = Math.floor((minValue + maxValue) / 2);
+    answerField.innerText = `Вы загадали число ${textNumber(answerNumber) }?`;
+    orderNumber = 1;
+    gameRun = true;    
+
+})
+
+document.querySelector('#btnRetry').addEventListener('click', function () {
     orderNumber = 1;
     orderNumberField.innerText = orderNumber;
-    answerField.innerText = `Вы загадали число ${textNumber(answerNumber) }?`;
-    gameRun = true;    
+    gameRun = true;
+    minValueOb.value = '0';
+    maxValueOb.value = '100';
+    answerBlock.classList.remove("show");
+    inputBlock.classList.add("show");
 })
 
 document.querySelector('#btnOver').addEventListener('click', function () {
     if (gameRun){
-        if (minValue === maxValue){
+        if ((minValue === maxValue) || (maxValue == answerNumber)){
             const phraseRandom = Math.round( Math.random() * 3);
             if (phraseRandom === 1) {
                 answerPhrase = `Вы загадали неправильное число!\n\u{1F914}`;
@@ -49,12 +95,12 @@ document.querySelector('#btnOver').addEventListener('click', function () {
                 answerPhrase = `Я сдаюсь..\n\u{1F92F}`;
             }
 
-
             answerField.innerText = answerPhrase;
             gameRun = false;
         } else {
             minValue = answerNumber  + 1;
             answerNumber  = Math.floor((minValue + maxValue) / 2);
+            console.log('minValue ' + minValue + '; maxValue ' + maxValue + 'answerNumber ' + answerNumber);
             orderNumber++;
             orderNumberField.innerText = orderNumber;
             answerField.innerText = `Вы загадали число ${textNumber(answerNumber) }?`;
@@ -62,12 +108,9 @@ document.querySelector('#btnOver').addEventListener('click', function () {
     }
 })
 
-
-
-
 document.querySelector('#btnLess').addEventListener('click', function () {
     if (gameRun){
-        if (minValue === maxValue){
+        if ((minValue === maxValue) || (minValue == answerNumber)){
             const phraseRandom = Math.round( Math.random() * 3);
             if (phraseRandom === 1) {
                 answerPhrase = `Вы загадали неправильное число!\n\u{1F914}`;
@@ -81,9 +124,12 @@ document.querySelector('#btnLess').addEventListener('click', function () {
 
             answerField.innerText = answerPhrase;
             gameRun = false;
-        } else {
+
+        } else {    
+            
             maxValue = answerNumber  - 1;
             answerNumber  = Math.floor((minValue + maxValue) / 2);
+            console.log('minValue ' + minValue + '; maxValue ' + maxValue + 'answerNumber ' + answerNumber);
             orderNumber++;
             orderNumberField.innerText = orderNumber;
             answerField.innerText = `Вы загадали число ${textNumber(answerNumber) }?`;

@@ -10,11 +10,34 @@
 </head>
 <body>
 <div class="container">
+    <div class=""></div>
     <div class="row game-card align-items-center">
-        <div class="col col-md-4 offset-md-4">
+        <!--div class="col col-md-6 offset-md-3 mt-3">
+            <h1 class="text-center">Игра угадайка</h1>
+        </div-->
+        <div class="col col-md-6 offset-md-3 collapse show" id="inputBlock">
+            <p class="text-center">Задайте минимальное и максимальное число:</p>
+
+            <div class="row">
+                <div class="col">
+                  <input type="text" class="form-control" id="minValue" value="0" >
+                </div>
+                <div class="col">
+                  <input type="text" class="form-control" id="maxValue" value="100" >
+                </div>
+            </div>
+            <div class="col text-center mt-2">
+                <button class="btn btn-primary" id="btnNextStep">Следующий шаг</button>
+            </div>
+        </div>
+        <div class="col col-md-6 offset-md-3 text-center collapse" id="nextBlock">
+            <p class="mt-3">Загадайте число от <span id="minVal">0</span> до <span id="maxVal">100</span></p>
+            <button class="btn btn-primary" id="btnStart">Угадать число?</button>
+        </div>
+        <div class="col col-md-6 offset-md-3 collapse" id="answerBlock">
             <div class="card text-center">
                 <div class="card-header">
-                    <p class="m-0">Вопрос №<span id="orderNumberField">5</span></p>
+                    <p class="m-0">Вопрос №<span id="orderNumberField">1</span></p>
                 </div>
                 <div class="card-body">
                     <div class="row no-gutters">
