@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Генератор случайных пользователей</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -11,25 +12,38 @@
 <body>
 <div class="container">
     <div class="row game-card align-items-center">
-        <div class="col col-md-6 offset-md-3">
-            <div class="card text-center">
-                <div class="card-header">
-                    <p class="m-0">Окно результатов генерации</p>
+        <div class="col col-md-6 offset-md-3">           
+            <h1>Генератор личности</h1>
+            <div class="data-block">
+                <div class="row">
+                    <div class="col-4">Фамилия</div>
+                    <div class="col-8" id="surnameOutput"></div>
                 </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col">
-                            <h3 class="card-title"><span id="surnameOutput">Генерация фамилии</span></h3>
-                            <h4>Имя: <span id="firstNameOutput">Иван</span></h4>
-                            <p>
-                                <span id="genderOutput">Генерация пола</span>
-                                <span>, </span>
-                                <span id="birthYearOutput">Генерация года рождения</span>
-                            </p>
-                        </div>
-                    </div>
+                <div class="row">
+                    <div class="col-4">Имя</div>
+                    <div class="col-8" id="firstNameOutput"></div>
+                </div>
+                <div class="row">
+                    <div class="col-4">Отчество</div>
+                    <div class="col-8" id="secondNameOutput"></div>
+                </div>
+                <div class="row">
+                    <div class="col-4">Пол</div>
+                    <div class="col-8" id="genderOutput"></div>
+                </div>
+                <div class="row">
+                    <div class="col-4">Дата рождения</div>
+                    <div class="col-8" id="birthYearOutput"></div>
+                </div>
+                <div class="row">
+                    <div class="col-4">Профессия</div>
+                    <div class="col-8" id="jobOutput"></div>
                 </div>
             </div>
+            <div class="button-block">
+                <button class="btn btn-primary" id="retry">Обновить</button>
+                <button class="btn btn-warning" id="clear">Очистить</button>
+            </div>            
         </div>
     </div>
 </div>
