@@ -1,16 +1,12 @@
 
-window.onload = function()
-{
-    const initPerson = personGenerator.getPerson();
-    document.querySelector('#firstNameOutput').innerText = initPerson.firstName;
-    document.querySelector('#secondNameOutput').innerText = initPerson.secondName;
-    document.querySelector('#surnameOutput').innerText = initPerson.surname;
-    document.querySelector('#genderOutput').innerText = initPerson.gender;
-    document.querySelector('#jobOutput').innerText = initPerson.job;
-    document.querySelector('#birthYearOutput').innerText = initPerson.birthday;
-
     document.querySelector('#retry').addEventListener('click', function () {
-        location.reload();
+        const initPerson = personGenerator.getPerson();
+        document.querySelector('#firstNameOutput').innerText = initPerson.firstName;
+        document.querySelector('#secondNameOutput').innerText = initPerson.secondName;
+        document.querySelector('#surnameOutput').innerText = initPerson.surname;
+        document.querySelector('#genderOutput').innerText = initPerson.gender;
+        document.querySelector('#jobOutput').innerText = initPerson.job;
+        document.querySelector('#birthYearOutput').innerText = initPerson.birthday;
     });
     document.querySelector('#clear').addEventListener('click', function () {
         document.querySelector('#firstNameOutput').innerText = '';
@@ -20,6 +16,3 @@ window.onload = function()
         document.querySelector('#jobOutput').innerText = '';
         document.querySelector('#birthYearOutput').innerText = '';
     });    
-
-};
-
